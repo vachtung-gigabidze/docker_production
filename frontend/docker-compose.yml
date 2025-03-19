@@ -1,0 +1,32 @@
+services:
+  web:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # use node_mod from container
+      - /app/node_modules
+      # mapping all other files to container Working dir
+      - .:/app
+    environment:
+      - WDS_SOCKET_HOST=127.0.0.1 
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true 
+    # command: npm run start
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev    
+    volumes:
+      # use node_mod from container
+      - /app/node_modules
+      # mapping all other files to container Working dir
+      - .:/app
+    environment:
+      - WDS_SOCKET_HOST=127.0.0.1 
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true 
+    command: npm run test

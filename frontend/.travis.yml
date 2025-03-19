@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t dmtrzdk/docker-react -f Dockerfile.dev
+
+script:
+  - docker run dmtrzdk/docker-react npm run test -- --coverage
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "" 
+  bucket_path: "docker"
+  on:
+    branch: main
