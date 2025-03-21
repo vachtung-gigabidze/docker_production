@@ -1,7 +1,11 @@
 services:
   postgres:
     image: 'postgres:latest'
-  redis:
+    environment:
+      # POSTGRES_DB: "db"
+      POSTGRES_PASSWORD: postgres_password
+      
+  redis-server:
     image: 'redis:latest'
   server:
     build:

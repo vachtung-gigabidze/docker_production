@@ -1,9 +1,9 @@
-import { redisHost, redisPort } from './keys';
+import keys from './keys.js';
 import { createClient } from 'redis';
 
 const redisClient = createClient({
-    host: redisHost,
-    port: redisPort,
+    host: keys.redisHost,
+    port: keys.redisPort,
     retry_strategy: () => 1000
 });
 

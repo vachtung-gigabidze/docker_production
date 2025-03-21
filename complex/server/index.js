@@ -14,7 +14,9 @@ app.use(cors())
 app.use(bodyParser.json());
 
 // PostgreSQL
-import {Pool} from 'pg';
+import pg from "pg";
+const { Pool } = pg;
+
 const pgClient = new Pool({
     user: keys.pgUser,
     host: keys.pgHost,
