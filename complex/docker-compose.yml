@@ -36,6 +36,9 @@ services:
     volumes:
       - /app/node_modules
       - ./client:/app
+    environment:
+#            Fixes bug where websocket connection is fixed to default port 3000
+      - WDS_SOCKET_PORT=0
   worker:
     build:
       dockerfile: Dockerfile.dev
