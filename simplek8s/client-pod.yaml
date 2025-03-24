@@ -3,14 +3,10 @@ kind: Pod
 metadata:
   name: client-pod
   labels:
-    name: web
+    component: web
 spec:
   containers:
-  - name: client
-    image: dmitriiziidik/multi-client
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
-    ports:
-      - containerPort: 3000
+    - name: client
+      image: stephengrider/multi-worker
+      ports:
+        - containerPort: 9999
